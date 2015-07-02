@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="在你身边，为你新鲜" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <meta name="format-detection" content="telephone=no" />
+	</head>
+
+	<body>
+		
+		<div style="height:200px"></div>
+		
+		<div id="product_detail">
+			<span>继续拖动，查看图文祥情</span>
+		</div>
+		
+		<br>1111111111111
+		<br>
+		<br>
+		<br>
+		<br>1111111111111
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>11111111111111
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div id="product_detail_scroll"></div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>111111111111111
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>1111111111111111
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>1111111111111111
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>1111111111111111
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>11111111111111111
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		
+	<script type="text/javascript">
+		
+		var ProductDetailFixedBox = function(el) {
+			this.element = el;
+			this.BoxY = getXY(this.element).y;
+		}
+		
+		ProductDetailFixedBox.prototype = {
+			setCss: function() {
+				//为兼容性考虑，获取当前的文档渲染方式
+				var windowST = (document.compatMode && document.compatMode != "CSS1Compat") ? 
+					document.body.scrollTop : document.documentElement.scrollTop || window.pageYOffset;
+				if (windowST > this.BoxY) {
+					this.element.style.cssText = "position:fixed; top:0px; background-color:#cdcdcd";
+				} else {
+					this.element.style.cssText = "";
+				}
+			}
+		};
+		
+		//添加事件
+		function addEvent(elm, evType, fn, useCapture) {
+			if (elm.addEventListener) {
+				elm.addEventListener(evType, fn, useCapture);
+				return true;
+			} else if (elm.attachEvent) {
+				var r = elm.attachEvent('on' + evType, fn);
+				return r;
+			} else {
+				elm['on' + evType] = fn;
+			}
+		}
+		
+		//获取元素的XY坐标
+		function getXY(el) {
+			return document.documentElement.getBoundingClientRect && (function() { 
+				//取元素坐标
+				var pos = el.getBoundingClientRect();
+				return {
+					x: pos.left + document.documentElement.scrollLeft,
+					y: pos.top + document.documentElement.scrollTop
+				};
+			})() || (function() {
+				var _x = 0,
+					_y = 0;
+				do {
+					_x += el.offsetLeft;
+					_y += el.offsetTop;
+				} 
+				while (el = el.offsetParent);
+					return {
+						x: _x,
+						y: _y
+					};
+			})();
+		}
+		
+		//实例化
+		var product_detail = new ProductDetailFixedBox(document.getElementById("product_detail"));
+		var product_detail_scroll = new ProductDetailFixedBox(document.getElementById("product_detail_scroll"));
+		
+		addEvent(window, "scroll", function() {
+			product_detail.setCss();
+			product_detail_scroll.setCss();
+		});
+		
+	</script>
+	</body>
+
+</html>

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+		<link href="css/entry-select.css" rel="stylesheet">
+	</head>
+<body>
+
+<div>
+  <div id="nav-bar">选择学校</div>
+
+  <!-- 搜索栏 -->
+  <div class="search pull-left">
+    <input type="text" class="ipt" placeholder="搜索" id="search" onfocus="this.placeholder = &#39;&#39;" onblur="this.placeholder = &#39;搜索&#39;">
+  </div>
+
+  <!-- 搜索学校后显示学校 -->
+  <div class="select-school-result" id="select-school-result" style="display: none;">
+  </div>
+
+  <div id="main" class="clearfix">
+
+    <!-- city-list -->
+    <div class="city-div">
+  
+      <div class="city active" data-city_id="1">上海</div>
+  
+      <div class="city" data-city_id="2">杭州</div>
+  
+      <div class="city" data-city_id="3">北京</div>
+  
+      <div class="city" data-city_id="4">南京</div>
+  
+      <div class="city" data-city_id="5">武汉</div>
+  
+      <div class="city" data-city_id="6">西安</div>
+  
+      <div class="city" data-city_id="7">成都</div>
+  
+      <div class="city" data-city_id="8">宁波</div>
+  
+      <div class="city" data-city_id="9">扬州</div>
+  
+      <div class="city" data-city_id="10">徐州</div>
+  
+      <div class="city" data-city_id="11">无锡</div>
+  
+      <div class="city" data-city_id="12">合肥</div>
+  
+      <div class="city" data-city_id="13">南昌</div>
+  
+      <div class="city" data-city_id="14">长沙</div>
+  
+      <div class="city" data-city_id="15">郑州</div>
+  
+      <div class="city" data-city_id="16">广州</div>
+  
+      <div class="city" data-city_id="17">福州</div>
+  
+      <div class="city" data-city_id="18">南宁</div>
+  
+      <div class="city" data-city_id="19">海口</div>
+  
+      <div class="city" data-city_id="20">重庆</div>
+  
+      <div class="city" data-city_id="21">昆明</div>
+  
+      <div class="city" data-city_id="22">贵阳</div>
+  
+      <div class="city" data-city_id="23">兰州</div>
+  
+      <div class="city" data-city_id="24">天津</div>
+  
+      <div class="city" data-city_id="25">济南</div>
+  
+      <div class="city" data-city_id="26">太原</div>
+  
+      <div class="city" data-city_id="27">石家庄</div>
+  
+      <div class="city" data-city_id="28">哈尔滨</div>
+  
+      <div class="city" data-city_id="29">长春</div>
+  
+      <div class="city" data-city_id="30">沈阳</div>
+  
+      <div class="city" data-city_id="31">呼和浩特</div>
+  
+      <div class="city" data-city_id="32">舟山</div>
+  
+      <div class="city" data-city_id="33">德阳</div>
+  
+      <div class="city" data-city_id="34">南充</div>
+  
+      <div class="city" data-city_id="35">咸阳</div>
+  
+      <div class="city" data-city_id="36">温州</div>
+  
+      <div class="city" data-city_id="37">青岛</div>
+  
+      <div class="city" data-city_id="38">保定</div>
+  
+      <div class="city" data-city_id="39">常州</div>
+  
+      <div class="city" data-city_id="40">芜湖</div>
+  
+      <div class="city" data-city_id="41">苏州</div>
+  
+      <div class="city" data-city_id="42">南通</div>
+  
+      <div class="city" data-city_id="43">镇江</div>
+  
+      <div class="city" data-city_id="44">盐城</div>
+  
+      <div class="city" data-city_id="45">荆州</div>
+  
+      <div class="city" data-city_id="46">潍坊</div>
+  
+      <div class="city" data-city_id="47">马鞍山</div>
+  
+      <div class="city" data-city_id="48">巢湖</div>
+  
+      <div class="city" data-city_id="49">银川</div>
+  
+      <div class="city" data-city_id="50">延安</div>
+  
+      <div class="city" data-city_id="51">宝鸡</div>
+  
+      <div class="city" data-city_id="52">渭南</div>
+  
+      <div class="city" data-city_id="53">西宁</div>
+  
+      <div class="city" data-city_id="54">蚌埠</div>
+  
+      <div class="city" data-city_id="55">新郑</div>
+  
+      <div class="city" data-city_id="56">驻马店</div>
+  
+      <div class="city" data-city_id="57">信阳</div>
+  
+      <div class="city" data-city_id="58">周口</div>
+  
+      <div class="city" data-city_id="59">平顶山</div>
+  
+      <div class="city" data-city_id="60">南阳</div>
+  
+      <div class="city" data-city_id="61">商丘</div>
+  
+      <div class="city" data-city_id="62">许昌</div>
+  
+      <div class="city" data-city_id="63">漯河</div>
+  
+      <div class="city" data-city_id="64">安阳</div>
+  
+      <div class="city" data-city_id="65">开封</div>
+  
+      <div class="city" data-city_id="66">新乡</div>
+  
+      <div class="city" data-city_id="67">鹤壁</div>
+  
+      <div class="city" data-city_id="68">洛阳</div>
+  
+      <div class="city" data-city_id="69">焦作</div>
+  
+      <div class="city" data-city_id="70">绵阳</div>
+  
+      <div class="city" data-city_id="71">泸州</div>
+  
+      <div class="city" data-city_id="72">自贡</div>
+  
+      <div class="city" data-city_id="73">十堰</div>
+  
+      <div class="city" data-city_id="74">襄樊</div>
+  
+      <div class="city" data-city_id="75">滁州</div>
+  
+      <div class="city" data-city_id="76">黄山</div>
+  
+      <div class="city" data-city_id="77">威海</div>
+  
+      <div class="city" data-city_id="78">运城</div>
+  
+      <div class="city" data-city_id="79">廊坊</div>
+  
+      <div class="city" data-city_id="80">湘潭</div>
+  
+      <div class="city" data-city_id="81">齐齐哈尔</div>
+  
+      <div class="city" data-city_id="82">湖州</div>
+  
+      <div class="city" data-city_id="83">淮北</div>
+  
+      <div class="city" data-city_id="84">亳州</div>
+  
+      <div class="city" data-city_id="85">阜阳</div>
+  
+      <div class="city" data-city_id="86">宿州</div>
+  
+      <div class="city" data-city_id="87">厦门</div>
+  
+      <div class="city" data-city_id="88">泉州</div>
+  
+      <div class="city" data-city_id="89">大连</div>
+  
+      <div class="city" data-city_id="90">澳门</div>
+  
+      <div class="city" data-city_id="91">吉林</div>
+  
+      <div class="city" data-city_id="92">台北</div>
+  
+      <div class="city" data-city_id="93">香港</div>
+  
+      <div class="city" data-city_id="94">乌鲁木齐</div>
+  
+      <div class="city" data-city_id="95">石河子</div>
+  
+      <div class="city" data-city_id="96">昌吉</div>
+  
+      <div class="city" data-city_id="97">伊犁</div>
+  
+      <div class="city" data-city_id="98">和田</div>
+  
+      <div class="city" data-city_id="99">阿拉尔</div>
+  
+      <div class="city" data-city_id="100">克拉玛依</div>
+  
+      <div class="city" data-city_id="101">奎屯</div>
+  
+      <div class="city" data-city_id="102">阿克苏</div>
+  
+      <div class="city" data-city_id="103">库尔勒</div>
+  
+      <div class="city" data-city_id="104">喀什</div>
+  
+      <div class="city" data-city_id="105">烟台</div>
+  
+      <div class="city" data-city_id="106">赣州</div>
+  
+      <div class="city" data-city_id="107">榆林</div>
+  
+      <div class="city" data-city_id="108">安康</div>
+  
+      <div class="city" data-city_id="109">汉中</div>
+  
+      <div class="city" data-city_id="110">商洛</div>
+  
+      <div class="city" data-city_id="111">铜川</div>
+  
+      <div class="city" data-city_id="112">深圳</div>
+  
+      <div class="city" data-city_id="113">佛山</div>
+  
+      <div class="city" data-city_id="114">泰州</div>
+  
+      <div class="city" data-city_id="115">韶关</div>
+  
+      <div class="city" data-city_id="116">肇庆</div>
+  
+      <div class="city" data-city_id="117">安庆</div>
+  
+      <div class="city" data-city_id="118">锦州</div>
+  
+      <div class="city" data-city_id="119">湛江</div>
+  
+      <div class="city" data-city_id="120">三亚</div>
+  
+      <div class="city" data-city_id="121">琼海</div>
+  
+      <div class="city" data-city_id="122">文昌</div>
+  
+      <div class="city" data-city_id="123">五指山</div>
+  
+      <div class="city" data-city_id="124">娄底</div>
+  
+      <div class="city" data-city_id="125">宿迁</div>
+  
+      <div class="city" data-city_id="126">连云港</div>
+  
+      <div class="city" data-city_id="127">鞍山</div>
+  
+      <div class="city" data-city_id="128">本溪</div>
+  
+      <div class="city" data-city_id="129">铁岭</div>
+  
+      <div class="city" data-city_id="130">盘锦</div>
+  
+      <div class="city" data-city_id="131">丹东</div>
+  
+      <div class="city" data-city_id="132">营口</div>
+  
+      <div class="city" data-city_id="133">朝阳</div>
+  
+      <div class="city" data-city_id="134">阜新</div>
+  
+      <div class="city" data-city_id="135">葫芦岛</div>
+  
+      <div class="city" data-city_id="136">抚顺</div>
+  
+      <div class="city" data-city_id="137">辽阳</div>
+  
+      <div class="city" data-city_id="138">四平</div>
+  
+      <div class="city" data-city_id="139">晋中</div>
+  
+      <div class="city" data-city_id="140">长治</div>
+  
+      <div class="city" data-city_id="141">宁德</div>
+  
+      <div class="city" data-city_id="142">南平</div>
+  
+      <div class="city" data-city_id="143">武夷山</div>
+  
+      <div class="city" data-city_id="144">莆田</div>
+  
+      <div class="city" data-city_id="145">嘉兴</div>
+  
+      <div class="city" data-city_id="146">衡阳</div>
+  
+      <div class="city" data-city_id="147">龙岩</div>
+  
+      <div class="city" data-city_id="148">三明</div>
+  
+      <div class="city" data-city_id="149">漳州</div>
+  
+      <div class="city" data-city_id="150">宜昌</div>
+  
+      <div class="city" data-city_id="151">黄冈</div>
+  
+      <div class="city" data-city_id="152">九江</div>
+  
+      <div class="city" data-city_id="153">景德镇</div>
+  
+      <div class="city" data-city_id="154">吉安</div>
+  
+      <div class="city" data-city_id="155">固原</div>
+  
+      <div class="city" data-city_id="156">石嘴山</div>
+  
+      <div class="city" data-city_id="157">吴忠</div>
+  
+      <div class="city" data-city_id="158">大同</div>
+  
+      <div class="city" data-city_id="159">临汾</div>
+  
+      <div class="city" data-city_id="160">阳泉</div>
+  
+      <div class="city" data-city_id="161">通化</div>
+  
+      <div class="city" data-city_id="162">大庆</div>
+  
+      <div class="city" data-city_id="163">佳木斯</div>
+  
+      <div class="city" data-city_id="164">桂林</div>
+  
+      <div class="city" data-city_id="165">金华</div>
+  
+      <div class="city" data-city_id="166">牡丹江</div>
+  
+      <div class="city" data-city_id="167">鸡西</div>
+  
+      <div class="city" data-city_id="168">绥化</div>
+  
+      <div class="city" data-city_id="169">张家口</div>
+  
+      <div class="city" data-city_id="170">唐山</div>
+  
+      <div class="city" data-city_id="171">常德</div>
+  
+      <div class="city" data-city_id="172">株洲</div>
+  
+      <div class="city" data-city_id="173">秦皇岛</div>
+  
+      <div class="city" data-city_id="174">新北</div>
+  
+      <div class="city" data-city_id="175">岳阳</div>
+  
+      <div class="city" data-city_id="176">玉林</div>
+  
+      <div class="city" data-city_id="177">东莞</div>
+  
+      <div class="city" data-city_id="178">珠海</div>
+  
+      <div class="city" data-city_id="179">淮南</div>
+  
+      <div class="city" data-city_id="180">武威</div>
+  
+      <div class="city" data-city_id="181">天水</div>
+  
+      <div class="city" data-city_id="182">张掖</div>
+  
+      <div class="city" data-city_id="183">白银</div>
+  
+      <div class="city" data-city_id="184">定西</div>
+  
+      <div class="city" data-city_id="185">甘南州</div>
+  
+      <div class="city" data-city_id="186">嘉峪关</div>
+  
+      <div class="city" data-city_id="187">金昌</div>
+  
+      <div class="city" data-city_id="188">绍兴</div>
+  
+      <div class="city" data-city_id="189">邯郸</div>
+  
+      <div class="city" data-city_id="190">邢台</div>
+  
+      <div class="city" data-city_id="191">鄂州</div>
+  
+      <div class="city" data-city_id="192">百色</div>
+  
+      <div class="city" data-city_id="193">承德</div>
+  
+      <div class="city" data-city_id="194">沧州</div>
+  
+      <div class="city" data-city_id="195">淄博</div>
+  
+      <div class="city" data-city_id="196">日照</div>
+  
+      <div class="city" data-city_id="197">丽水</div>
+  
+      <div class="city" data-city_id="198">茂名</div>
+  
+      <div class="city" data-city_id="199">包头</div>
+  
+      <div class="city" data-city_id="200">通辽</div>
+  
+      <div class="city" data-city_id="201">咸宁</div>
+  
+      <div class="city" data-city_id="202">台州</div>
+  
+      <div class="city" data-city_id="203">泰安</div>
+  
+      <div class="city" data-city_id="204">枣庄</div>
+  
+      <div class="city" data-city_id="205">济宁</div>
+  
+      <div class="city" data-city_id="206">衢州</div>
+  
+      <div class="city" data-city_id="207">惠州</div>
+  
+      <div class="city" data-city_id="208">中山</div>
+  
+      <div class="city" data-city_id="209">滨州</div>
+  
+      <div class="city" data-city_id="210">临沂</div>
+  
+      <div class="city" data-city_id="211">池州</div>
+  
+      <div class="city" data-city_id="212">遵义</div>
+  
+</div>
+
+    <!-- zone-list -->
+    <div class="zone-div">
+  <div id="city-1-content" class="zone-list" style="display:block;">
+  
+      <div class="zone-tt">闵行</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/2">
+            <div class="site">上海交通大学</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/3">
+            <div class="site">紫竹科技园</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/4">
+            <div class="site">华东师范大学(闵行)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/5">
+            <div class="site">东海学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/17">
+            <div class="site">上海电机学院(闵行)</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">松江</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/11">
+            <div class="site">松江大学城一期</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/12">
+            <div class="site">松江大学城二期</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/13">
+            <div class="site">松江大学城三期</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/14">
+            <div class="site">松江大学城四期</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/15">
+            <div class="site">松江大学城五期</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/16">
+            <div class="site">松江大学城六期</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">宝山</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/6">
+            <div class="site">上海大学(宝山)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/2443">
+            <div class="site">建峰学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/2575">
+            <div class="site">济光学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/2901">
+            <div class="site">上海医疗器械高等专业学院（宝山）</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/2902">
+            <div class="site">上海震旦职业学院</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">临港</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/7">
+            <div class="site">上海海事大学</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/8">
+            <div class="site">上海海洋大学</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/9">
+            <div class="site">上海电机学院(临港)</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">奉贤</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/44">
+            <div class="site">华东理工大学(奉贤)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/45">
+            <div class="site">上海师范大学(奉贤)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/46">
+            <div class="site">上海应用技术大学(奉贤)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/47">
+            <div class="site">上海旅游高等职业学院</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">杨浦</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/48">
+            <div class="site">复旦大学(邯郸校区)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/49">
+            <div class="site">上海财经大学</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/56">
+            <div class="site">上海理工大学</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/77">
+            <div class="site">上海体育学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/78">
+            <div class="site">同济大学(四平校区)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/2903">
+            <div class="site">上海城市管理学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/3098">
+            <div class="site">上海医疗器械高等专业学院（杨浦）</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/3099">
+            <div class="site">上海出版印刷高等专科学校</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">徐汇</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/50">
+            <div class="site">华东理工大学(徐汇)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/51">
+            <div class="site">上海师范大学(徐汇)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/52">
+            <div class="site">上海健康职业学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/53">
+            <div class="site">上海应用技术学院(徐汇)</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">嘉定</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/54">
+            <div class="site">同济大学(嘉定)</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/3560">
+            <div class="site">上海大学（嘉定）</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">普陀</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/55">
+            <div class="site">华东师范大学(普陀)</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">青浦</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/57">
+            <div class="site">上海政法学院</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">南汇</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/58">
+            <div class="site">上海电力学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/59">
+            <div class="site">上海工商外国语职业学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/60">
+            <div class="site">思博职业技术学院</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">浦东新区</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/148">
+            <div class="site">复旦大学</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/149">
+            <div class="site">中国美院张江高科校区</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/150">
+            <div class="site">上海电影艺术职业学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/151">
+            <div class="site">上海中医药大学</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/152">
+            <div class="site">上海建桥学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/153">
+            <div class="site">上海第二工业大学</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/154">
+            <div class="site">上海金融学院</div>
+          </a>
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/155">
+            <div class="site">上海杉达学院</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">长宁</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/156">
+            <div class="site">东华大学</div>
+          </a>
+        
+      </div>
+  
+      <div class="zone-tt">闸北</div>
+      <div class="site-list">
+        
+          <a href="http://yemao.59store.com/entry/index/site_id/2650">
+            <div class="site">行健学院</div>
+          </a>
+        
+      </div>
+  
+  </div>
+</div>
+  </div>
+</div>
+
+<!-- 搜索学校展示模版 -->
+<script type="text/template" id="select-school-result-template">
+  <ul>
+    <% _.each(data, function(school){ %>
+    <li><a href="/entry/index/site_id/<%=school.site_id%>"><%=school.site_name %></a></li>
+    <% }); %>
+  </ul>
+</script>
+
+<!-- citylist template -->
+<script type="text/template" id="city-list-template">
+  <% _.each(data, function(item, index) { %>
+      <div class="city" data-city_id='<%= item.city_id %>'><%= item.name %></div>
+  <% }); %>
+</script>
+
+<!-- zone list template-->
+<script type="text/template" id="zone-site-list-template">
+  <div id='city-<%= city_id %>-content' class='zone-list' style="display:block;">
+  <% _.each(data, function(item, index) { %>
+      <div class='zone-tt'><%= item.name %></div>
+      <div class='site-list'>
+        <% _.each(item.siteList, function(site, index) {%>
+          <a href='/entry/index/site_id/<%= site.site_id %>'>
+            <div class='site'><%= site.site_name %></div>
+          </a>
+        <% }); %>
+      </div>
+  <% }); %>
+  </div>
+</script>
+
+  <script src="js/lib.js"></script>
+  <script src="js/entry_select.js"></script>
+
+    <div id="apply-mask"></div>
+    <div id="iframe-out">
+      <div class="iframe-inner">
+        <iframe id="iframe"></iframe>
+      </div>
+    </div>
+  
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="css/ionic.css" type="text/css"/>
+		<link href="css/bootstrap.min.css" />
+	</head>
+
+	<body>
+		<ion-view title="标题">
+			<ion-content has-header="true">
+				<!--下拉刷新-->
+				<ion-refresher pulling-text="下拉刷新" pulling-icon="ion-loading-c" refreshing-text="刷新成功" refreshing-icon="ion-loading-c" on-refresh="doRefresh()">
+				</ion-refresher>
+				
+				<ion-list>
+					<!--href="#/tab/friend/{{page.id}}"-->
+					<a class="item p0" href="#/friend-detail/{{page.id}}" ng-repeat="page in items">
+						<div class="row p0">
+							<div class="col p0">
+								<div class="row  nypic"></div>
+							</div>
+							<div class="col col-75">
+								<div class="row">
+
+									<div class="col">{{page.borrowTitle}}</div>
+								</div>
+								<div class="row">
+									<div class="col">年利率</div>
+									<div class="col">总额</div>
+									<div class="col">期限</div>
+								</div>
+								<div class="row">
+									<div class="col orange">{{page.annualRate | number:2}}%</div>
+									<div class="col">{{page.borrowAmount}}</div>
+									<div class="col">{{page.deadline}}<b ng-switch on="page.isDayThe"><b ng-switch-when="1">个月</b><b ng-switch-default>天</b></b>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="progress_bg_my">
+											<div class="progress_my" style="width:{{page.schedules}}%"></div>
+										</div>{{page.schedules}}%</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="item item-divider"></div>
+
+					</a>
+				</ion-list>
+				<!--上拉更多 ng-if="moreDataCanBeLoaded()"-->
+				<ion-infinite-scroll icon="ion-loading-c" ng-if="moreDataCanBeLoaded()" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+			</ion-content>
+		</ion-view>
+	</body>
+	
+	<script src="js/angular.js"></script>
+	<script src="js/ionic.bundle.js"></script>
+	<script src="js/ionic.js"></script>
+	
+	<script>
+		//控制器、FinancList服务  $ionicListDelegate（list控制器）   $timeout定时器
+		.controller('FriendsCtrl', function($scope, FinancList, $ionicListDelegate, $timeout) {
+			
+			$scope.items = [];
+			
+			FinancList.getList().query(function(response) {
+				$scope.items = response; //必须是JSON数组或集合
+			});
+			
+			//上拉刷新
+			$scope.doRefresh = function() {
+				FinancList.param.curPage = 0;
+				FinancList.getList().query(function(response) {
+					$scope.items = response;
+					// 停止广播ion-refresher
+					$scope.$broadcast('scroll.refreshComplete');
+				});
+			};
+			
+			FinancList.param.hasmore = true;
+			//更多
+			$scope.loadMore = function() {
+				//这里使用定时器是为了缓存一下加载过程，防止加载过快
+				$timeout(function() {
+					if (!FinancList.param.hasmore) {
+						$scope.$broadcast('scroll.infiniteScrollComplete');
+						return;
+					}
+					
+					FinancList.getList().query(function(response) {
+						FinancList.param.hasmore = response.pageBean.page.length > 0;
+						for (var i = 0; i < response.pageBean.page.length; i++) {
+							$scope.items.push(response.pageBean.page[i]);
+						}
+						$scope.$broadcast('scroll.infiniteScrollComplete');
+						FinancList.param.curPage++;
+					});
+				}, 1000);
+			};
+			
+			$scope.moreDataCanBeLoaded = function() {
+				return FinancList.param.hasmore;
+			}
+			
+			$scope.$on('stateChangeSuccess', function() {
+				$scope.loadMore();
+			});
+			
+			$ionicListDelegate.showReorder(true);
+		})
+		
+	</script>
+	
+	<script>
+		//服务
+		.factory('FinancList', function($resource, UrlUtil) {
+			var param = {};
+			//页码
+			param.curPage = 1;
+			param.hasmore = false;
+
+			function getList() {
+				return $resource(UrlUtil.root + 'financeList.do', {}, {
+					query: {
+						method: 'GET',
+						params: param
+					}
+				});
+			}
+			return {
+				getList: getList,
+				param: param
+			};
+		})
+	</script>
+	
+</html>

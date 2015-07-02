@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+
+</html>
+<!--
+	Infinite Lists 由于手机不适合使用多页面显示posts，
+	Infinite Lists成为各种新闻、咨询类app的标配。
+	为了在ionic框架中使用到Infinite Lists，我们首先学习ion-list。 
+	ion-list ion-list使用 在ionic中，通过使用ion-list和ion-item来展示数据，通过ng-repeat循环输出，如demo（使用ionic start mydemo tabs命令生成ionic demo）中的templates/tab-friends.html中显示：
+	{{friend.name}} 假如我们返回到html的数据，每次都为20项，则但屏幕划到最后一项或前几项时，则需要监听检测到，并且载入下一个20项数据，从而达到无止境的下滑刷新载入更多的目标。这里，ionic提供了ion-infinite-scroll directive。 ion-infinite-scroll function is more like a scroll detector: it detects when a user is scrolled to a given point
+	above the bottom of the view (default 1%, or 99% of the way down), and executes a function. 所以需要在html中添加这个directive，
+	如下： {{friend.name}} 在controller中添加addFriends()函数，和载入数据。 同时，在重新完全载入数据后，需要发送一个scroll.infiniteScrollComplete事件，告诉directive，我们完成了这个动作，系统会清理scroller和为下一次的载入数据，重新绑定这一事件。
+	修改friends controller 通过修改controller，让list一次载入20个friends数据，这样达到Infinite Lists效果，如下修改
+-->
+js/controllers.js中FriendsCtrl： .controller(‘FriendsCtrl’, function($scope, Friends) { var currentStart = 0; $scope.friends = []; $scope.addFriends = function() { for (var
+i = currentStart; i < currentStart+20; i++) { $scope.friends.push(Friends.get(currentStart)); } currentStart +=2 0; $scope.$broadcast( 'scroll.infiniteScrollComplete'); }; $scope.addFriends(); //$scope.friends=F riends.all(); }) service添加mock数据 在service端，调用Friends
+factory如下： .factory( 'Friends', function() { // Might use a resource here that returns a JSON array // Some fake testing data var friends=[ { id: 0, name: 'Scruff McGruff' }, { id: 1, name: 'G.I. Joe' }, { id: 2, name: 'Miss Frizzle' }, { id: 3, name:
+'Ash Ketchum' }, { id: 4, name: 'Scruff McGruff' }, { id: 5, name: 'G.I. Joe' }, { id: 6, name: 'Miss Frizzle' }, { id: 7, name: 'Ash Ketchum' }, { id: 8, name: 'Scruff McGruff' }, { id: 9, name: 'G.I. Joe' }, { id: 10, name: 'Miss Frizzle' }, { id: 11, name:
+'Ash Ketchum' },{ id: 0, name: 'Scruff McGruff' }, { id: 12, name: 'G.I. Joe' }, { id: 13, name: 'Miss Frizzle' }, { id: 14, name: 'Ash Ketchum' }, { id: 15, name: 'Scruff McGruff' }, { id: 16, name: 'G.I. Joe' }, { id: 17, name: 'Miss Frizzle' }, { id: 18, name:
+'Ash Ketchum' }, { id: 19, name: 'Scruff McGruff' }, { id: 20, name: 'G.I. Joe' }, { id: 21, name: 'Miss Frizzle' }, { id: 22, name: 'Ash Ketchum' }, { id: 23, name: 'Scruff McGruff' }, { id: 24, name: 'G.I. Joe' }, { id: 25, name: 'Miss Frizzle' }, { id: 26, name:
+'Ash Ketchum' }, { id: 27, name: 'Scruff McGruff' }, { id: 28, name: 'G.I. Joe' }, { id: 29, name: 'Miss Frizzle' }, { id: 30, name: 'Ash Ketchum' }, { id: 31, name: 'Scruff McGruff' }, { id: 32, name: 'G.I. Joe' }, { id: 33, name: 'Miss Frizzle' }, { id: 34, name:
+'Ash Ketchum' }, { id: 35, name: 'Scruff McGruff' }, { id: 36, name: 'G.I. Joe' }, { id: 37, name: 'Miss Frizzle' }, { id: 38, name: 'Ash Ketchum' }, { id: 39, name: 'Scruff McGruff' } ]; return { all: function() { return friends; }, get: function(friendId) { //
+Simple index lookup return friends[friendId]; } } 测试 使用python命令，测试： python -m SimpleHTTPServer 8000 ion-infinite-scroll 参数 主要有三个参数： on-infinite：expression；含义：What to call when the scroller reaches the bottom. distance (optional) string； 含义：The distance
+from the bottom that the scroll must reach to trigger the on-infinite expression. Default: 1%. icon(optional) string；含义：The icon to show while loading. Default: 'ion-loading-d'. 也可以添加ng-if来判断是否还有更多数据可以载入，如： 更多的ion-list使用，参照 官网 本文链接： Exploring Ionic Lists
+，转载请注明。

@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/angular.min.js"></script>
+		
+		
+		<script type="text/javascript">
+			var DemoCtrl = function($scope) {
+				$scope.ShowMode = "list";
+				$scope.ChangeShow = function(ShowMode) {
+					$scope.ShowMode = ShowMode;
+				}
+			};
+		</script>
+	</head>
+
+	<body ng-controller="DemoCtrl" ng-switch="ShowMode">
+		<div class="well span6" ng-switch-when="add">
+			成功
+		</div>
+
+		<div class="well span6" style="float:none;">
+			<input class="mobile-validate" type="tel" ng-model="model.mobile" placeholder="输入您的手机号码" />
+			<button ng-click="ChangeShow('add')">确定</button>
+			<br/>
+		</div>
+	</body>
+
+</html>

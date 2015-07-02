@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app>
+
+	<head>
+		<meta charset="utf-8" />
+		<script src="http://code.angularjs.org/1.2.25/angular.min.js"></script>
+		<script src="http://code.angularjs.org/1.2.25/angular-animate.min.js"></script>
+
+		<style>
+		
+			.animate-show-hide {
+				padding: 10px;
+				background: white;
+				color: red;
+			}
+			
+			.animate-show-hide.ng-hide-add,
+			.animate-show-hide.ng-hide-remove {
+				-webkit-transition: all linear 0.5s;
+				-moz-transition: all linear 0.5s;
+				transition: all linear 0.5s;
+				display: block!important;
+			}
+			
+			.animate-show-hide
+			.ng-hide-add.ng-hide-add-active,
+			.animate-show-hide.ng-hide-remove {
+				opacity: 0;
+			}
+			
+			.animate-show-hide.ng-hide-add,
+			.animate-show-hide.ng-hide-remove
+			.ng-hide-remove-active {
+				opacity: 1;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div ng-init="checked=false">
+			<input type="checkbox" ng-model="checked"></input>
+			<div class="animate-show-hide" ng-show="checked">+1</div>
+		</div>
+	</body>
+
+</html>

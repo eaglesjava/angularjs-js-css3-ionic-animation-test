@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery-1.10.2.min.js"></script>
+	</head>
+	<body>
+		<div class="fixeddiv">
+			<button onclick="clickdiv()">test</button>
+		</div>
+		
+	</body>
+	<script>
+		function clickdiv() {//将这个绑定到要点击出发的元素的onclick事件
+		    var point = getPosition();
+		    $("#fixeddiv").css({ "top": point.y + "px", "left": point.x + "px" }); //fixeddiv要移动的盒子的ID
+		    movediv();
+		}
+		
+		function getPosition(ev) {
+		    ev = ev || window.event;
+		    var point = { x: 0, y: 0 };
+		    if (ev.pageX || ev.pageY) {
+		        point.x = ev.pageX;
+		        point.y = ev.pageY;
+		    } else {//兼容ie  
+		        point.x = ev.clientX + document.body.scrollLeft - document.body.clientLeft;
+		        point.y = ev.clientY + document.documentElement.scrollTop;
+		    }
+		    return point;
+		}
+		
+		var mubiao = { x: 900, y: 600 };//要移动到的位置
+		var bianliang = 60;//数值越大越慢，移动的次数越多
+		
+		function movediv() {
+		    var top_str = $("#fixeddiv").css("top").split('p')[0];
+		    var left_str = $("#fixeddiv").css("left").split('p')[0];
+		    if (top_str >= mubiao.y && left_str >= mubiao.x) {
+		        bianliang = 60;
+		        return;
+		    }
+		    if (top_str < mubiao.y)
+		        $("#fixeddiv").css({ "top": (top_str-0 + (mubiao.y - top_str-((bianliang-1)*10)) / (bianliang-0)) + "px" });
+		//            else if (top_str > mubiao.y)
+		//                $("#fixeddiv").css({ "top": (top_str - ((mubiao.y - top_str) / 60)) + "px" });
+		    if (left_str < mubiao.x)
+		        $("#fixeddiv").css({ "left": (left_str - 0 + (mubiao.x - left_str) / (bianliang-0)) + "px" }); 
+		//            else if (left_str > mubiao.x)
+		//                $("#fixeddiv").css({ "left": (left_str - 10) + "px" });
+		    bianliang--;
+		    setTimeout(movediv,20);//移动的速度
+		}
+	</script>
+</html>

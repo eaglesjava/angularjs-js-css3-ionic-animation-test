@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="angular-animate">
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="style/angular-animate.css" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans+Caption:700" />
+	</head>
+
+	<body ng-controller="animate-controller">
+		<div ng-if="isActiveAnimation('animat0r')" ng-animate="'fade'" class="animat0r">animat0r</div>
+		<div class="notifiers">
+			<div ng-if="isBye()" ng-animate="'fadeUp'" class="bye">goodbye</div>
+			<div ng-if="isHello()" ng-animate="'fadeUp'" class="hello">hello</div>
+		</div>
+		<h1>Attention seekers</h1>
+		<div ng-click="setActiveAnimation('flash')" class="activat0r">flash</div>
+		<div ng-if="isActiveAnimation('flash')" ng-animate="'flash'" class="animat0r">flash</div>
+		<div ng-click="setActiveAnimation('bounce')" class="activat0r">bounce</div>
+		<div ng-if="isActiveAnimation('bounce')" ng-animate="'bounce'" class="animat0r">bounce</div>
+		<div ng-click="setActiveAnimation('shake')" class="activat0r">shake</div>
+		<div ng-if="isActiveAnimation('shake')" ng-animate="'shake'" class="animat0r">shake</div>
+		<div ng-click="setActiveAnimation('swing')" class="activat0r">swing</div>
+		<div ng-if="isActiveAnimation('swing')" ng-animate="'swing'" class="animat0r">swing</div>
+		<div ng-click="setActiveAnimation('wobble')" class="activat0r">wobble</div>
+		<div ng-if="isActiveAnimation('wobble')" ng-animate="'wobble'" class="animat0r">wobble</div>
+		<div ng-click="setActiveAnimation('wiggle')" class="activat0r">wiggle</div>
+		<div ng-if="isActiveAnimation('wiggle')" ng-animate="'wiggle'" class="animat0r">wiggle</div>
+		<div ng-click="setActiveAnimation('pulse')" class="activat0r">pulse</div>
+		<div ng-if="isActiveAnimation('pulse')" ng-animate="'pulse'" class="animat0r">pulse</div>
+		<h1>Flippers</h1>
+		<div ng-click="setActiveAnimation('flip')" class="activat0r">flip</div>
+		<div ng-if="isActiveAnimation('flip')" ng-animate="'flip'" class="animat0r">flip</div>
+		<div ng-click="setActiveAnimation('flipX')" class="activat0r">flipX</div>
+		<div ng-if="isActiveAnimation('flipX')" ng-animate="'flipX'" class="animat0r">flipX</div>
+		<div ng-click="setActiveAnimation('flipY')" class="activat0r">flipY</div>
+		<div ng-if="isActiveAnimation('flipY')" ng-animate="'flipY'" class="animat0r">flipY</div>
+		<h1>Fading</h1>
+		<div ng-click="setActiveAnimation('fade')" class="activat0r">fade</div>
+		<div ng-if="isActiveAnimation('fade')" ng-animate="'fade'" class="animat0r">fade</div>
+		<div ng-click="setActiveAnimation('fadeUp')" class="activat0r">fadeUp</div>
+		<div ng-if="isActiveAnimation('fadeUp')" ng-animate="'fadeUp'" class="animat0r">fadeUp</div>
+		<div ng-click="setActiveAnimation('fadeDown')" class="activat0r">fadeDown</div>
+		<div ng-if="isActiveAnimation('fadeDown')" ng-animate="'fadeDown'" class="animat0r">fadeDown</div>
+		<div ng-click="setActiveAnimation('fadeLeft')" class="activat0r">fadeLeft</div>
+		<div ng-if="isActiveAnimation('fadeLeft')" ng-animate="'fadeLeft'" class="animat0r">fadeLeft</div>
+		<div ng-click="setActiveAnimation('fadeLeftBig')" class="activat0r">fadeLeftBig</div>
+		<div ng-if="isActiveAnimation('fadeLeftBig')" ng-animate="'fadeLeftBig'" class="animat0r">fadeLeftBig</div>
+		<h1>Bouncing</h1>
+		<div ng-click="setActiveAnimation('bounceIn')" class="activat0r">bounceIn</div>
+		<div ng-if="isActiveAnimation('bounceIn')" ng-animate="'bounceIn'" class="animat0r">bounceIn</div>
+		<div ng-click="setActiveAnimation('bounceDown')" class="activat0r">bounceDown</div>
+		<div ng-if="isActiveAnimation('bounceDown')" ng-animate="'bounceDown'" class="animat0r">bounceDown</div>
+		<div ng-click="setActiveAnimation('bounceUp')" class="activat0r">bounceUp</div>
+		<div ng-if="isActiveAnimation('bounceUp')" ng-animate="'bounceUp'" class="animat0r">bounceUp</div>
+		<div ng-click="setActiveAnimation('bounceLeft')" class="activat0r">bounceLeft</div>
+		<div ng-if="isActiveAnimation('bounceLeft')" ng-animate="'bounceLeft'" class="animat0r">bounceLeft</div>
+		<div ng-click="setActiveAnimation('bounceRight')" class="activat0r">bounceRight</div>
+		<div ng-if="isActiveAnimation('bounceRight')" ng-animate="'bounceRight'" class="animat0r">bounceRight</div>
+		<h1>Rotating</h1>
+		<div ng-click="setActiveAnimation('rotate')" class="activat0r">rotate</div>
+		<div ng-if="isActiveAnimation('rotate')" ng-animate="'rotate'" class="animat0r">rotate</div>
+		<div ng-click="setActiveAnimation('rotateDownLeft')" class="activat0r">rotateDownLeft</div>
+		<div ng-if="isActiveAnimation('rotateDownLeft')" ng-animate="'rotateDownLeft'" class="animat0r">rotateDownLeft</div>
+		<div ng-click="setActiveAnimation('rotateDownRight')" class="activat0r">rotateDownRight</div>
+		<div ng-if="isActiveAnimation('rotateDownRight')" ng-animate="'rotateDownRight'" class="animat0r">rotateDownRight</div>
+		<h1>Lighspeed</h1>
+		<div ng-click="setActiveAnimation('lightSpeed')" class="activat0r">lightSpeed</div>
+		<div ng-if="isActiveAnimation('lightSpeed')" ng-animate="'lightSpeed'" class="animat0r">lightSpeed</div>
+		<h1>Specials</h1>
+		<div ng-click="setActiveAnimation('hinge')" class="activat0r">hinge</div>
+		<div ng-if="isActiveAnimation('hinge')" ng-animate="'hinge'" class="animat0r">hinge</div>
+		<div ng-click="setActiveAnimation('roll')" class="activat0r">roll</div>
+		<div ng-if="isActiveAnimation('roll')" ng-animate="'roll'" class="animat0r">roll</div>
+	</body>
+
+</html>

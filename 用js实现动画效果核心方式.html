@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#animation {
+				width: 500px;
+				height: 350px;
+				background-color: green;
+				/*direction: name 1s;*/
+			}
+			
+			/*@keyframes name{
+				from{
+					opcity:1;
+				}
+				to{
+					opcity:0;
+				}
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<div id="animation"></div>
+		
+		<script type="text/javascript">
+			(function() {
+				function someAnimation(args) {
+					document.getElementById("animation").style.opacity = args;
+				}
+				setInterval(function() {
+					for (var i = 0; i < 10; i++) {
+						setTimeout((function(pos) {
+							return function() {
+								someAnimation(pos);
+							}
+						})(i / 10), i * 100)
+					}
+				}, 2000);
+			})()
+		</script>
+	</body>
+
+</html>
