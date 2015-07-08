@@ -1,0 +1,606 @@
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Language" content="zh-cn" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+		<title></title>
+	</head>
+	<style>
+		body {
+			font-family: "Microsoft Yahei", Arial, sans-serif;
+			font-size: 14px;
+			background: #fff;
+			overflow-x: hidden;
+		}
+		.title {
+			font-size: 15px;
+			margin-bottom: 5px;
+		}
+		.content {
+			e margin-bottom: 10px;
+		}
+		.textarea {
+			background-color: #FFFCEC;
+		}
+		.module {
+			border: 1px solid #DDDDDD;
+			padding: 5px;
+			margin-bottom: 10px;
+		}
+		.button {
+			display: inline-block;
+			position: relative;
+			margin: 0px;
+			padding: 0 20px;
+			text-align: center;
+			text-decoration: none;
+			font: bold 12px/25px Arial, sans-serif;
+			text-shadow: 1px 1px 1px rgba(255, 255, 255, .22);
+			-webkit-border-radius: 30px;
+			-moz-border-radius: 30px;
+			border-radius: 30px;
+			-webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 1px 1px 1px rgba(255, 255, 255, .44);
+			-moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 1px 1px 1px rgba(255, 255, 255, .44);
+			box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 1px 1px 1px rgba(255, 255, 255, .44);
+			-webkit-transition: all 0.15s ease;
+			-moz-transition: all 0.15s ease;
+			-o-transition: all 0.15s ease;
+			-ms-transition: all 0.15s ease;
+			transition: all 0.15s ease;
+		}
+		.green {
+			color: #3e5706;
+			background: #a5cd4e;
+		}
+	</style>
+
+	<body style="">
+		<div>
+			<div class="module">
+				<div class="title">
+					<span>用户信息</span>
+				</div>
+				<div>
+					<span style="">客服账号：</span><span type="text" id="workeraccount"></span>
+				</div>
+				<div>
+					<span style="">当前访客：</span><span type="text" id="toUin"></span>
+				</div>
+			</div>
+			<div class="module">
+				<div class="title">
+					<span>编辑消息</span>
+				</div>
+				<div class="content">
+					<input id="radio1" type="radio" name="msg" onClick="setmsg(1)" value="1" />图文消息
+					<input type="radio" name="msg" onClick="setmsg(2)" value="2" />图片
+					<input type="radio" name="msg" onClick="setmsg(3)" value="3" />文本消息
+					<input type="submit" onClick="putmsg()" value="输出到会话窗口" />
+				</div>
+				<div>
+					<textarea type="text" name="messageData" id="messageData" class="textarea" style="height:150; width:100%; overflow-y: auto;"></textarea>
+				</div>
+			</div>
+			<div class="module">
+				<div class="title">
+					<span>高亮页卡</span>
+				</div>
+				<div class="content">
+					<input type="submit" onClick="notice()" value="高亮页卡" /><span id="noticecon" style="color:red;font-size: 11px"></span>
+				</div>
+			</div>
+
+			<div class="module">
+				<div class="title">
+					<span>操作流水</span>
+				</div>
+				<div class="content">
+					<textarea id="area" class="textarea" style="height:260;width:100%;overflow-y:auto"></textarea>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+<!--		<div class="module">
+
+					<div class="title">
+						<span>订单信息</span>
+					</div>
+
+					<div>
+						<span style="">商品总额:</span>
+						<span type="text" id="totalprice"></span>
+					</div>
+
+					<div>
+						<span style="">支付方式:</span>
+						<span type="text" id="payway"></span>
+					</div>
+
+					<div>
+						<span style="">订单编号:</span>
+						<span type="text" id="ordernum"></span>
+					</div>
+
+					<div>
+						<span style="">订单状态:</span>
+						<span type="text" id="orderstatus"></span>
+					</div>
+
+					<div>
+						<span style="">下单门店:</span>
+						<span type="text" id="areaname"></span>
+					</div>
+
+					<div>
+						<span style="">收货的人:</span>
+						<span type="text" id="consignee"></span>
+					</div>
+
+					<div>
+						<span style="">手机号码:</span>
+						<span type="text" id="mobile"></span>
+					</div>
+
+					<div>
+						<span style="">收货方式:</span>
+						<span type="text" id="delivertype"></span>
+					</div>
+
+					<div>
+						<span style="">收货地址:</span>
+						<span type="text" id="address"></span>
+					</div>
+
+					<div>
+						<span style="">下单时间:</span>
+						<span type="text" id="createdat"></span>
+					</div>
+
+				</div>
+				
+				-->
+	</body>
+
+</html>
+<script type="text/javascript" src="http://o2o.gtimg.com/module/jquery.js"></script>
+
+<script>
+	/*var w_data = null;*/
+	
+	var ticket = getUrlParam('ticket');
+	console.log(ticket);
+	var workerAccouont = '';
+	
+	document.getElementById("radio1").checked = true;
+	setmsg(1);
+	
+	$.getScript('http://crm1.dkf.qq.com/php/index.php/thirdapp/appdemo/get_workeraccount_by_sessionkey?callback=wokeraccountCallback&ticket=' + ticket);
+
+	function wokeraccountCallback(data) {
+		/*w_data = data;*/
+		
+		document.getElementById('area').value += '您现在登录的帐号是：' + $xss(data.workeraccount, "html") + '\n';
+		document.getElementById('workeraccount').innerHTML = $xss(data.workeraccount, "html");
+	}
+	
+	/*
+	 * JS事件接口
+	 * 
+	 * 多客服客户端定义了一系列的事件，客户端会调用插件页面的MCS_ClientNotify(strParam)方法来通知页面。
+	 * 
+	 * 插件页面实现MCS_ClientNotify(strParam)方法，即可收到来自客户端的事件通知，
+	 * 
+	 * 页面可以通过参数中的event字段来区分具体事件类型。
+	 * 
+	 * */
+
+	function MCS_ClientNotify(EventData) {
+		EventData = strToJson(EventData);
+		switch (EventData['event']) {
+			//OnUserChange事件——切换当前会话用户
+			case 'OnUserChange':
+				{
+					OnUserChange(EventData);
+					break;
+				}
+			//OnMapMsgClick事件——客服点击地理消息
+			case 'OnMapMsgClick':
+				{
+					OnMapMsgClick(EventData);
+					break;
+				}
+		}
+	}
+	
+	/*
+	 * 为了方便插件页面获取当前会话的用户，当客服切换会话窗口时多客服客户端会通过OnUserChange事件通知页面，
+	 * 并在参数中带上当前用户的OpenId等信息。
+	 * 插件页面可以响应OnUserChange事件，获取并展示当前用户的相关信息。
+	 */
+
+	//OnUserChange事件——切换当前会话用户
+	function OnUserChange(data) {
+		document.getElementById('toUin').innerHTML = data['userid'];
+		var str = document.getElementById('area').value;
+		
+		//channeltype:用户渠道号，固定为1，表示微信渠道
+		str += "切换到用户:" + data['userid'] + ", channeltype:" + data['channeltype'] + "\n";
+		try {
+			if (data.hasOwnProperty('visitorid')) {}
+			document.getElementById('area').value += 'hasOwnProperty no problem';
+		} catch (e) {
+			document.getElementById('area').value += e.message;
+		}
+		document.getElementById('area').value = str;
+	}
+
+	//OnMapMsgClick事件——客服点击地理消息
+	function OnMapMsgClick(data) {
+		$id('area').value += "latitude :" + data['latitude'] + ",longitude:" + data['longitude'] + ",location :" + data['location'] + ",scale :" + data['scale'];
+	}
+
+	function putmsg() {
+		var strReturn = window.external.PutMsg('{"msg":' + document.getElementById('messageData').value + '}');
+		document.getElementById('area').value += 'put msg return:' + strReturn + '\n';
+	}
+
+	function setmsg(d) {
+		var msg = [
+			'{"head":{"random":"{#random#}"}, "body":[{"type":7, "content":[{"title":"常见问题", "digest":"查看全文", "cover":"http://p.qpic.cn/ecc_merchant/0/P_idc2844234_1399602518774/0", "url":"http://weigou.qq.com/wkd/messages/show/cid-cc_idc_208646"}]}]}',
+			'{"head":{"random":"{#random#}"}, "body":[{"type":1, "content":{"picUrl":"http://p.qpic.cn/ecc_merchant/0/P_idc2844234_1399602518774/0"}}]}',
+			'{"head":{"random":"{#random#}"}, "body":[{"type":0, "content":{"text":"您好，请问有什么可以帮到您的呢"}}]}'
+		];
+		document.getElementById('messageData').value = msg[d - 1].replace("{#random#}", Math.ceil(Math.random() * 10000000));
+	}
+
+	function strToJson(str) {
+		var json = (new Function("return " + str))();
+		return json;
+	}
+
+	function getUrlParam(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		var r = window.location.search.substr(1).match(reg); //匹配目标参数
+		if (r != null) return unescape(r[2]);
+		return null; //返回参数值
+	}
+
+	function notice() {
+		document.getElementById('area').value += '5秒钟后开始执行notice,请先切换到其他TAB\n'
+		document.getElementById('noticecon').innerHTML = "(5秒钟后开始执行notice,请先切换到其他TAB)";
+		setTimeout('window.external.Notice("");', 5000);
+	}
+
+	function $xss(str, type) {
+		//空过滤
+		if (!str) {
+			return str === 0 ? "0" : "";
+		}
+		switch (type) {
+			case "none": //过度方案
+				return str + "";
+				break;
+			case "html": //过滤html字符串中的XSS
+				return str.replace(/[&'"<>\/\\\-\x00-\x09\x0b-\x0c\x1f\x80-\xff]/g, function(r) {
+					return "&#" + r.charCodeAt(0) + ";"
+				}).replace(/ /g, " ").replace(/\r\n/g, "<br />").replace(/\n/g, "<br />").replace(/\r/g, "<br />");
+				break;
+			case "htmlEp": //过滤DOM节点属性中的XSS
+				return str.replace(/[&'"<>\/\\\-\x00-\x1f\x80-\xff]/g, function(r) {
+					return "&#" + r.charCodeAt(0) + ";"
+				});
+				break;
+			case "url": //过滤url
+				return escape(str).replace(/\+/g, "%2B");
+				break;
+			case "miniUrl":
+				return str.replace(/%/g, "%25");
+				break;
+			case "script":
+				return str.replace(/[\\"']/g, function(r) {
+					return "\\" + r;
+				}).replace(/%/g, "\\x25").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\x01/g, "\\x01");
+				break;
+			case "reg":
+				return str.replace(/[\\\^\$\*\+\?\{\}\.\(\)\[\]]/g, function(a) {
+					return "\\" + a;
+				});
+				break;
+			default:
+				return escape(str).replace(/[&'"<>\/\\\-\x00-\x09\x0b-\x0c\x1f\x80-\xff]/g, function(r) {
+					return "&#" + r.charCodeAt(0) + ";"
+				}).replace(/ /g, " ").replace(/\r\n/g, "<br />").replace(/\n/g, "<br />").replace(/\r/g, "<br />");
+				break;
+		}
+	}
+</script>
+<!--[if !IE]>|xGv00|539017d66e4e60b1c82cbc86aa9a5d50<![endif]-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+(function(){
+	
+	var app = angular.module('qiguai',['qiguai.controllers', 'qiguai.services']);
+	
+	var base_controller = angular.module('qiguai.controllers', []);
+	
+	var base_service = angular.module('qiguai.services', []);
+
+base_controller = base_controller.controller('IndexController', function($scope, $location, $window, $http, UtilService) {
+	
+	var ticket = getUrlParam('ticket');
+	
+	var workerAccouont = '';
+	
+//  var url = "http://crm1.dkf.qq.com/php/index.php/thirdapp/appdemo/get_workeraccount_by_sessionkey?callback=JSON_CALLBACK&ticket=" + ticket;
+//  
+//  document.getElementById('toUin').innerHTML = url;
+    
+    function strToJson(str){ 
+		var json = (new Function("return " + str))(); 
+		return json;
+	}
+    
+    
+    function MCS_ClientNotify(EventData) {
+    	document.getElementById('toUin').innerHTML = '222222222222';
+    	//document.getElementById('toUin').innerHTML = JSON.stringify(EventData);
+		EventData = strToJson(EventData);
+		switch(EventData['event']){
+			case 'OnUserChange':{
+				
+				
+				
+				break;
+			}
+		}
+	}
+	function OnUserChange(data) {
+		document.getElementById('toUin').innerHTML = JSON.stringify(data);
+	}
+    
+    //test();
+    
+//  function test() {
+//  	$http.jsonp(url)
+//	    .success(function(data){
+//	    	
+//	    	document.getElementById('workeraccount').innerHTML =  $xss(data.workeraccount,"html");
+//	    	
+//	    	//document.getElementById('toUin').innerHTML = JSON.stringify(data);
+//	    	
+//	    	alert(JSON.stringify(data));
+//	    	
+//	    })
+//	    .error(function(data){
+//	    	alert(JSON.stringify(data));
+//	    });
+//  }
+	
+	function getUrlParam(name) {
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		if (r!=null) return unescape(r[2]); return null; //返回参数值
+	}
+	
+	function $xss(str,type){
+		//空过滤
+		if(!str){
+			return str===0 ? "0" : "";
+		}
+		
+		switch(type){
+			case "none": //过度方案
+				return str+"";
+			break;
+			case "html": //过滤html字符串中的XSS
+				return str.replace(/[&'"<>\/\\\-\x00-\x09\x0b-\x0c\x1f\x80-\xff]/g, function(r){
+					return "&#" + r.charCodeAt(0) + ";"
+				}).replace(/ /g, " ").replace(/\r\n/g, "<br />").replace(/\n/g,"<br />").replace(/\r/g,"<br />");
+			break;
+			case "htmlEp": //过滤DOM节点属性中的XSS
+				return str.replace(/[&'"<>\/\\\-\x00-\x1f\x80-\xff]/g, function(r){
+					return "&#" + r.charCodeAt(0) + ";"
+				});
+			break;
+			case "url": //过滤url
+				return escape(str).replace(/\+/g, "%2B");
+			break;
+			case "miniUrl":
+				return str.replace(/%/g, "%25");
+			break;
+			case "script":
+				return str.replace(/[\\"']/g, function(r){
+					return "\\" + r;
+				}).replace(/%/g, "\\x25").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\x01/g, "\\x01");
+			break;
+			case "reg":
+				return str.replace(/[\\\^\$\*\+\?\{\}\.\(\)\[\]]/g, function(a){
+					return "\\" + a;
+				});
+			break;
+			default:
+				return escape(str).replace(/[&'"<>\/\\\-\x00-\x09\x0b-\x0c\x1f\x80-\xff]/g, function(r){
+					return "&#" + r.charCodeAt(0) + ";"
+				}).replace(/ /g, " ").replace(/\r\n/g, "<br />").replace(/\n/g,"<br />").replace(/\r/g,"<br />");
+			break;
+		}
+	}
+	
+});
+
+/************************** service **************************/
+
+base_service.factory('UtilService', function($http, $window) {
+	var api_url = 'http://api.52qiguai.com';   //测试
+    //var api_url = 'http://api.51qiguai.com'; //正式
+    
+    var api_path_get_order_openid = '/orderApi/order/page/orderByOpenId';
+	
+    var base_params = {
+        head: {
+              userId: '',
+              tokenId: '', //可选
+              uaaId: '', //可选
+              callType: 'wechat',
+              callTypeNo: '1.0',
+              callTime: 0,
+              mobileType: '',
+              mobileStandard: '',
+              appVersion: '1.0',
+              appVersionNo: '0.1',
+              channelCode: ''      
+          },
+        body: {},
+        sign: ''
+    };
+
+    return {
+        //构造请求参数
+        buildParam: function(params) {
+
+            base_params.head.callTime = new Date().getTime();
+            base_params.body = params;
+
+            if(params.userId) {
+                base_params.head.userId = params.userId;
+            }
+
+            if(params.tokenId) {
+                base_params.head.tokenId = params.tokenId;
+            }
+
+            var result = JSON.stringify(base_params);
+
+            return result;
+        },
+        
+        //兼容angularjs表单参数格式
+        getFormParam: function(obj) {
+            var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
+                
+            for(name in obj) {
+                value = obj[name];
+
+                if(value instanceof Array) {
+                    for(i=0; i<value.length; ++i) {
+                        subValue = value[i];
+                        fullSubName = name + '[' + i + ']';
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + '&';
+                    }
+                }
+                else if(value instanceof Object) {
+                    for(subName in value) {
+                        subValue = value[subName];
+                        fullSubName = name + '[' + subName + ']';
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + '&';
+                    }
+                }
+                else if(value !== undefined && value !== null) {
+                    query += name + '=' + value + '&';
+                }
+            }
+              
+            return query.length ? query.substr(0, query.length - 1) : query;
+        },
+        //调用接口
+        callAPI: function(api_path, params, success_callback, fail_callback) {
+
+            var base_url = api_url + api_path;
+
+            var req_params = this.getFormParam({'param':  this.buildParam(params)});
+
+            qlog(base_url);
+            qlog(req_params);
+
+            $http({
+                url: base_url,
+                method: "POST",
+                data: req_params,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+                }
+            })
+            .then(function(response) {
+                //返回成功
+                var data = response.data;
+
+                qlog(base_url);
+                qlog(data);
+
+                //校验返回数据是否正确
+                if(data && data.code == '1' && data.returnData) {
+                    if(typeof success_callback == 'function') {
+                        success_callback(data);
+                    }
+                }
+                else {
+                    if(typeof fail_callback == 'function') {
+                        fail_callback(data);
+                    }
+                }
+
+            }, function(response) {
+                //返回失败
+                qlog("ERROR: " + response);
+
+                if(typeof fail_callback == 'function') {
+                    fail_callback(response.data);
+                }
+            });
+        },
+        
+        //查看订单列表 payStatus: all-全部 forpay-未支付
+        getOrderOpenId: function(openId, payStatus, pageNo, pageSize, success_callback, fail_callback) {
+            var call_url = api_path_get_order_openid;
+
+            this.callAPI(call_url, 
+                {'openId': openId, 'payStatus': payStatus, 'pageNo': pageNo, 'pageSize': pageSize}, 
+                success_callback, fail_callback);
+        }
+        
+      };
+    });
+})();
+
+var qlog = function(msg) {
+    var ua = navigator.userAgent.toLowerCase();  
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        if(typeof msg == 'object') {
+            console.log(JSON.stringify(msg));
+        }
+        else {
+            console.log(msg);
+        }
+    }
+    else {
+        console.log(msg);
+    }
+}
+
+function MCS_ClientNotify(EventData) {
+	document.getElementById('toUin').innerHTML = JSON.stringify(EventData);
+}
+</script>
